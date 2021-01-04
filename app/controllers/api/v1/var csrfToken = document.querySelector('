@@ -1,0 +1,20 @@
+var csrfToken = document.querySelector('[name=csrf-token]')
+fetch('http://localhost:3000/api/v1/images', {
+  credentials: 'include',
+  headers: {
+    accept: 'application/json, text/plain, */*',
+    'accept-language': 'en-US,en;q=0.9',
+    'cache-control': 'no-cache',
+    'content-type': 'application/json;charset=UTF-8',
+    pragma: 'no-cache',
+    'sec-fetch-dest': 'empty',
+    'sec-fetch-mode': 'cors',
+    'sec-fetch-site': 'same-origin',
+    'x-csrf-token': csrfToken.content,
+  },
+  referrer: 'http://localhost:3000/',
+  referrerPolicy: 'strict-origin-when-cross-origin',
+  body: '{"image":{"title":"A new image","description":"blap"}}',
+  method: 'POST',
+  mode: 'cors',
+})
