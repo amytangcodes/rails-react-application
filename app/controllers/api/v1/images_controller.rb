@@ -35,6 +35,14 @@ class Api::V1::ImagesController < ApplicationController
   end
 
   def destroy
+    if authorized?
+      @image.destroy
+      respond_to do |format|
+        format.json { head :no_content }
+      end
+    else
+      handle_unauthorized
+    end
   end
 
   private
